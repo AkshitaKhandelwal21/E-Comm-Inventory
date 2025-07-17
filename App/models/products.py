@@ -1,5 +1,7 @@
 from sqlmodel import SQLModel, Field
 from typing import Optional
+
+
 class Product(SQLModel, table=True):
     id: int = Field(default=None, primary_key=True)
     name: str
@@ -7,6 +9,13 @@ class Product(SQLModel, table=True):
     quantity: int
     price: float
     category_id: str = Field(foreign_key="category.id")
+
+
+class ProductUpdate(SQLModel):
+    name: Optional[str]
+    quantity: Optional[int]
+    price: Optional[float]
+    category_id: Optional[int]
 
 
 class Category(SQLModel, table=True):

@@ -1,11 +1,13 @@
-from fastapi import FastAPI
+from fastapi import Depends, FastAPI
 from App.routes.healthcheck import hc
-from App.conn.db import create_db
+from App.routes.products import prod
+from App.conn.db import create_db, get_session
 
 app = FastAPI()
 
-@app.on_event("startup")
-def on_startup():
-    create_db()
+# @app.on_event("startup")
+# def on_startup():
+#     create_db()
 
 app.include_router(hc)
+app.include_router(prod)
