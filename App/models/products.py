@@ -1,5 +1,6 @@
 from sqlmodel import SQLModel, Field
 from typing import Optional
+from App.models.category import Category
 
 
 class Product(SQLModel, table=True):
@@ -18,8 +19,4 @@ class ProductUpdate(SQLModel):
     category_id: Optional[int]
 
 
-class Category(SQLModel, table=True):
-    id: int = Field(default=None, primary_key=True)
-    name: str
-    desc: Optional[str]
 
