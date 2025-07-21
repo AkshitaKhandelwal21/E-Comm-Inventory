@@ -1,7 +1,8 @@
 from fastapi import APIRouter
 from sqlmodel import select
 from App.conn.db import SessionDep
-from App.models.products import Product, ProductUpdate
+from App.models.category import Category
+from App.models.products import Product, ProductCreate, ProductUpdate
 
 prod = APIRouter()
 
@@ -12,13 +13,15 @@ def get_products(session: SessionDep):
 
 
 @prod.get("/products/{id}")
-def update_product(id: int, session: SessionDep):
+def get_product_by_id(id: int, session: SessionDep):
     product = session.get(Product, id)
     return product
 
 
 @prod.post("/post_product")
-def post_product(product: Product, session: SessionDep):
+def post_product(data:ProductCreate, product:Product, session: SessionDep):
+    category = session.exec(select(Category).where(Category.name==data.category_name))
+    product.category_id = category.id
     session.add(product)
     session.commit()
     session.refresh(product)

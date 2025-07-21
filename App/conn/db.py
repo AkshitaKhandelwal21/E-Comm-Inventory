@@ -3,7 +3,8 @@ from fastapi import Depends
 from sqlmodel import create_engine, SQLModel, Session
 from App.models.products import Product, Category
 from App.models.users import User
-from App.models.category import Category, CategoryUpdate
+from App.models.category import Category
+from App.models.supplier import Supplier
 
 sqlite_file_name = "inventory.db"
 
