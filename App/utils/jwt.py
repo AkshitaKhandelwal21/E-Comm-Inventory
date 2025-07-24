@@ -47,4 +47,7 @@ def require_admin(user: User = Depends(get_current_user)):
         raise HTTPException(status_code=403, detail="Only admin can perform this action")
     return user
 
-
+def require_seller(user: User = Depends(get_current_user)):
+    if user.role.lower() != "seller":
+        raise HTTPException(status_code=403, detail="Only seller can perform this action")
+    return user

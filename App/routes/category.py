@@ -13,6 +13,6 @@ def get_categories(session:Session=Depends(get_session)):
     return categories
 
 @cat.get("/category")
-def get_category_by_id(name: str, session: SessionDep):
+def get_category_by_name(name: str, session: SessionDep):
     cat = session.exec(select(Category).where(Category.name==name)).first()
     return cat
