@@ -3,14 +3,13 @@ from sqlmodel import select
 from App.conn.db import SessionDep
 from App.models.category import Category
 from App.models.products import Product, ProductCreate, ProductUpdate
+from App.routes.product_admin import prod
 
-prod = APIRouter()
 
 @prod.get("/products")
 def get_products(session: SessionDep):
     products = session.exec(select(Product)).all()
     return products
-
 
 @prod.get("/products/{id}")
 def get_product_by_id(id: int, session: SessionDep):

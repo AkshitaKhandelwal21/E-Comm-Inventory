@@ -9,7 +9,11 @@ class Category(SQLModel, table=True):
     name: str
     desc: Optional[str]
 
+class CategoryCreate(SQLModel):
+    name: str
+    desc: Optional[str]
 
 class CategoryUpdate(SQLModel):
     name: Optional[str]
     desc: Optional[str]
+    
