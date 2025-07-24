@@ -3,3 +3,7 @@ uvicorn
 sqlalchemy
 mysql
 pymysql
+python-jose
+passlib[bcrypt]
+jinja2
+python-multipart
